@@ -1,0 +1,11 @@
+_build
+Build
+blib
+.project
+.externalToolBuilders
+MANIFEST.bak
+Makefile.PL
+/doc/*
+/inc/*
+/META.json
+/Task.Joose.NodeJS-*.tar.gz
