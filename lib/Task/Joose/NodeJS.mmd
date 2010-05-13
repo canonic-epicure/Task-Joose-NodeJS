@@ -1,20 +1,23 @@
 Name
 ====
 
-
-Task.Joose.NodeJS - Joose, packaged with NodeJS flavour
+Task.Joose.NodeJS - Joose, packaged with NodeJS flavour.
 
 
 SYNOPSIS
 ========
 
         require('Task/Joose/NodeJS')
+        
+        Class('Animal', {
+            ...
+        })
 
         
         Role('Winged', {
             has : {
-                leftWing : { is : 'rw' },
-                rightWing : { is : 'rw' }
+                leftWing    : { is : 'rw' },
+                rightWing   : { is : 'rw' }
             },
             
             methods : {
@@ -51,16 +54,41 @@ SYNOPSIS
 DESCRIPTION
 ===========
 
-`Task.Joose.NodeJS` is a package, containing Joose along with several essential extensions:
+`Task.Joose.NodeJS` is a distribution, containing Joose core bundled along with several essential extensions. Below is the composition:
 
->* Joose    3.008 (XXX release)
->* JooseX.Attribute 0.02 (XXX release)
->* JooseX.Namespace.Depended 0.02|3 (XXX release)
->* JooseX.CPS 0.02 (XXX release)
+> Joose                             [3.008](http://openjsan.org/doc/s/sa/samuraijack/Joose/3.008/lib/Joose.html)
+
+>> Joose core, provides definitions for `Class/Role/Module` helpers
+
+> JooseX.Attribute                  [0.02](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Attribute/0.02/lib/JooseX/Attribute.html) 
+
+>> Additional features for attributes
+
+> JooseX.Namespace.Depended         [0.02](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Namespace/Depended/0.02/lib/JooseX/Namespace/Depended.html)
+
+>> Dependencies handling extension
+
+> JooseX.CPS                        [0.02](http://openjsan.org/doc/s/sa/samuraijack/JooseX/CPS/0.02/lib/JooseX/CPS.html)
+
+>> Trait, allowing to add the asynchronous (aka non-blocking) methods to your classes
 
 
-EXAMPLES
-========
+Approach to modules 
+===================
+
+Joose was initially created to run in browser environment. Browser platform is less tolerant to synchronous resource loading than SSJS, as in older browsers it blocks the UI.
+Thus, Joose wasn't able to adapt the CommonJS modules system (which is synchronous) and uses its own 
+
+ 
+
+USAGE
+=====
+
+Scenario 1. Using Joose in Comm
+
+To load Joose
+
+
 
 
 GETTING HELP
