@@ -169,12 +169,16 @@ In this scenario you'll probably want to create anonymous classes (just omit the
             }
         })
 
+This scenario is available only server-side.
+
 
 Scenario 2. Using CommonJS modules in Joose - basic
 ---------------------------------------------------
 
 In this scenario we first declare the module (to get the "body" function with own scope) , and then "promote" it to class. Note, how we use the leading dot in the name of class.
 Without it, the created class would've been put in the module's namespace, like: `Graphic.Circle.Graphic.Circle`
+
+This scenario is available only server-side.
 
         Module('Graphic.Circle', function (module) {
             
@@ -209,6 +213,8 @@ Scenario 3. Using CommonJS modules in Joose - with dependencies
 
 In this scenario we declare additional dependencies for out Joose class. We can specify the dependencies either with `use` - they'll be loaded via Joose
 modules system or with `require` - they'll be handled by standard `require`.
+
+This scenario is available only server-side.
 
 
         Module('Graphic.Circle', {
@@ -249,6 +255,9 @@ Scenario 4. Using Joose classes, depending on Joose classes only
 ---------------------------------------------------------------
 
 When using Joose classes, depending on Joose classes only, we can declare the Class from start, without wrapping Module.
+
+This scenario is available both in browser and server-side enviroments.
+
 
         Class('Graphic.Circle', {
         
