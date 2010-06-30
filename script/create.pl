@@ -58,4 +58,4 @@ print $fh $content;
 $fh->close;
 
 
-print `java -jar bin/yuicompressor-2.4.2.jar -o lib/Task/Joose/NodeJS.js lib/Task/Joose/NodeJS.js`; 
+#print `java -jar bin/yuicompressor-2.4.2.jar -o lib/Task/Joose/NodeJS.js lib/Task/Joose/NodeJS.js`; 

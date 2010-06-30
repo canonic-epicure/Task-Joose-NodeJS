@@ -56,19 +56,19 @@ DESCRIPTION
 
 `Task.Joose.NodeJS` is a distribution, containing Joose core bundled along with several essential extensions. Below is the composition:
 
-> Joose                             [3.008](http://openjsan.org/doc/s/sa/samuraijack/Joose/3.008/lib/Joose.html)
+> Joose                             [3.009](http://openjsan.org/doc/s/sa/samuraijack/Joose/3.009/lib/Joose.html)
 
 >> Joose core, provides definitions for `Class/Role/Module` helpers
 
-> JooseX.Attribute                  [0.02](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Attribute/0.02/lib/JooseX/Attribute.html) 
+> JooseX.Attribute                  [0.03](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Attribute/0.03/lib/JooseX/Attribute.html) 
 
 >> Additional features for attributes
 
-> JooseX.Namespace.Depended         [0.02](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Namespace/Depended/0.02/lib/JooseX/Namespace/Depended.html)
+> JooseX.Namespace.Depended         [0.04](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Namespace/Depended/0.04/lib/JooseX/Namespace/Depended.html)
 
 >> Dependencies handling extension
 
-> JooseX.CPS                        [0.02](http://openjsan.org/doc/s/sa/samuraijack/JooseX/CPS/0.02/lib/JooseX/CPS.html)
+> JooseX.CPS                        [0.06](http://openjsan.org/doc/s/sa/samuraijack/JooseX/CPS/0.06/lib/JooseX/CPS.html)
 
 >> Trait, allowing to add the asynchronous (aka non-blocking) methods to your classes
 
@@ -80,7 +80,7 @@ Joose was initially created to run in browser environment. Browser platform is l
 Thus, Joose wasn't able to adapt the CommonJS modules system (which is synchronous) and behave differently. However, when using Joose on server-side, you can freely mix the
 Joose and CommonJS modules. 
 
-Below is the quick introductory to Joose modules. Please refer to [Joose manual](http://openjsan.org/go/?l=Joose.Manual) for details. 
+Below is the quick introduction to Joose modules. Please refer to [Joose manual](http://openjsan.org/go/?l=Joose.Manual) for details. 
 
 
 Basic Joose module
@@ -101,8 +101,8 @@ The module in Joose is just a special kind of class, which is declared with `Mod
         Some.Module.exportedFunction1()
         Some.Module.exportedFunction2()
 
-The module doesn't export anything. Instead, the module namespace (`Some.Module`) is exported to the calling scope. If you need to export some function, then define it
-as the property of the module's namespace (when defining Classes you may prefer to use [static methods](http://openjsan.org/go/?l=Joose.Manual.Static)) 
+The module doesn't export anything. Instead, the module namespace (`Some.Module`) is exported to the calling scope. If you need to export some function - define it
+as the property of the module's namespace (when declaring Classes you may prefer to use [static methods](http://openjsan.org/go/?l=Joose.Manual.Static)) 
 
 
 Joose module with dependencies
@@ -129,7 +129,7 @@ If the module depends on other modules, the dependencies should be listed with `
             var exportedFunction2  = Some.Module.exportedFunction2
         }})
     
-Before running the "body" all dependencies will be asynchronously pre-loaded (only once). This code will work unmodified in both browser and server-side enviroments.
+Before running the "body" all dependencies will be asynchronously pre-loaded (only once). This code will work unmodified in both browser and server-side environments.
 
 This functionality is provided by the [JooseX.Namespace.Depended](http://openjsan.org/go/?l=JooseX.Namespace.Depended) extension, please refer to its documentation for details 
 (like how the files should be laid out in filesystem).
@@ -169,12 +169,16 @@ In this scenario you'll probably want to create anonymous classes (just omit the
             }
         })
 
+This scenario is available only server-side.
+
 
 Scenario 2. Using CommonJS modules in Joose - basic
 ---------------------------------------------------
 
 In this scenario we first declare the module (to get the "body" function with own scope) , and then "promote" it to class. Note, how we use the leading dot in the name of class.
 Without it, the created class would've been put in the module's namespace, like: `Graphic.Circle.Graphic.Circle`
+
+This scenario is available only server-side.
 
         Module('Graphic.Circle', function (module) {
             
@@ -209,6 +213,8 @@ Scenario 3. Using CommonJS modules in Joose - with dependencies
 
 In this scenario we declare additional dependencies for out Joose class. We can specify the dependencies either with `use` - they'll be loaded via Joose
 modules system or with `require` - they'll be handled by standard `require`.
+
+This scenario is available only server-side.
 
 
         Module('Graphic.Circle', {
@@ -249,6 +255,9 @@ Scenario 4. Using Joose classes, depending on Joose classes only
 ---------------------------------------------------------------
 
 When using Joose classes, depending on Joose classes only, we can declare the Class from start, without wrapping Module.
+
+This scenario is available both in browser and server-side enviroments.
+
 
         Class('Graphic.Circle', {
         
