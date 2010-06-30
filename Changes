@@ -2,6 +2,8 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+0.02      2010-06-30 08:41
+
     - switched to Dist::Zilla
     - upgraded Joose to 3.009, JooseX.Attribute to 0.03, JooseX.CPS to 0.06 and JooseX.N.D to 0.04
 
