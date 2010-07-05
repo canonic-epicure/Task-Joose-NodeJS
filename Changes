@@ -2,6 +2,8 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+0.03      2010-07-05 19:28
+
     - upgraded Joose to 3.010, JooseX.Attribute to 0.04, JooseX.CPS to 0.07 and JooseX.N.D to 0.05
     - all bundled distributions now passes the test suites on NodeJS 
 
