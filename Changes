@@ -2,6 +2,9 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+    - upgraded Joose to 3.010, JooseX.Attribute to 0.04, JooseX.CPS to 0.07 and JooseX.N.D to 0.05
+    - all bundled distributions now passes the test suites on NodeJS 
+
 0.02      2010-06-30 08:41
 
     - switched to Dist::Zilla
