@@ -7,7 +7,7 @@ Task.Joose.NodeJS - Joose, packaged with NodeJS flavour.
 SYNOPSIS
 ========
 
-        require('Task/Joose/NodeJS')
+        require('task-joose-nodejs') 
         
         Class('Animal', {
             ...
@@ -49,26 +49,35 @@ SYNOPSIS
             does : 'Winged'
         })
         
+        
+INSTALLATION
+============
+
+With `npm`:
+
+    npm install task-joose-nodejs
 
 
 DESCRIPTION
 ===========
 
-`Task.Joose.NodeJS` is a distribution, containing Joose core bundled along with several essential extensions. Below is the composition:
+`Task.Joose.NodeJS` is a distribution, which just loads a Joose core along with with several essential extensions. Its purposed to be used on NodeJS platform. 
 
-> Joose                             [3.010](http://openjsan.org/doc/s/sa/samuraijack/Joose/3.010/lib/Joose.html)
+It includes:
+
+> [Joose](http://openjsan.org/go/?l=Joose.Manual)
 
 >> Joose core, provides definitions for `Class/Role/Module` helpers
 
-> JooseX.Attribute                  [0.04](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Attribute/0.04/lib/JooseX/Attribute.html) 
+> [JooseX.Attribute](http://openjsan.org/go/?l=JooseX.Attribute) 
 
 >> Additional features for attributes
 
-> JooseX.Namespace.Depended         [0.05](http://openjsan.org/doc/s/sa/samuraijack/JooseX/Namespace/Depended/0.05/lib/JooseX/Namespace/Depended.html)
+> [JooseX.Namespace.Depended](http://openjsan.org/go/?l=JooseX.Namespace.Depended)
 
 >> Dependencies handling extension
 
-> JooseX.CPS                        [0.07](http://openjsan.org/doc/s/sa/samuraijack/JooseX/CPS/0.07/lib/JooseX/CPS.html)
+> [JooseX.CPS](http://openjsan.org/go/?l=JooseX.CPS)
 
 >> Trait, allowing to add the asynchronous (aka non-blocking) methods to your classes
 
@@ -138,7 +147,7 @@ This functionality is provided by the [JooseX.Namespace.Depended](http://openjsa
 USAGE
 =====
 
-        require('Task/Joose/NodeJS')
+        require('task-joose-nodejs')
 
 
 This will export `Class/Role/Module` as standard CommonJS module. Also, it will *create the same helpers in the global scope*. 
@@ -149,7 +158,7 @@ Scenario 1. Using Joose in CommonJS modules
 
 In this scenario you'll probably want to create anonymous classes (just omit the name):
 
-        var Class       = require('Task/Joose/NodeJS').Class
+        var Class       = require('task-joose-nodejs').Class
         
         var someFunc    = require('some/module').someFunc
     
