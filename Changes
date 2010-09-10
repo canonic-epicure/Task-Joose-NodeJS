@@ -2,6 +2,8 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+0.04      2010-09-10 18:09
+
     - updated to use with `npm` and now just requires the extensions, instead 
       of including a static copy 
 
