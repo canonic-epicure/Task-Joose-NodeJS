@@ -2,6 +2,8 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+    - once again, re-releasing with dependencies w/o leading zeros to make `npm` happy
+
 0.05      2010-09-10 18:17
 
     - re-releasing with dependencies w/o leading zeros to make `npm` happy
