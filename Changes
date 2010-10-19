@@ -2,6 +2,8 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+    - made npm version export the same symbols as `joose`
+
 0.06      2010-10-05 12:53
 
     - once again, re-releasing with dependencies w/o leading zeros to make `npm` happy
