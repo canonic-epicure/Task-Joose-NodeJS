@@ -1,0 +1,342 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+	<head>
+		<link type="text/css" rel="stylesheet" href="http://bit.ly/multi_markdown_style_css " />
+	</head>
+<body>
+<h1 id="name">Name</h1>
+
+<p>Task.Joose.NodeJS - Joose, packaged with NodeJS flavour.</p>
+
+<h1 id="synopsis">SYNOPSIS</h1>
+
+<pre><code>    require('task-joose-nodejs') 
+
+    Class('Animal', {
+        ...
+    })
+
+
+    Role('Winged', {
+        has : {
+            leftWing    : { is : 'rw' },
+            rightWing   : { is : 'rw' }
+        },
+
+        methods : {
+
+            flight : function () {
+                this.leftWing.flutter()
+                this.rightWing.flutter()
+            },
+
+            land : function () {
+                this.leftWing.hold()
+                this.rightWing.hold()
+            }
+        }
+    })
+
+
+
+    Class('Bird', {
+        isa : 'Animal',
+
+        does : 'Winged'
+    })
+
+
+    Class('Gryphon', {
+        isa : 'Lion',
+
+        does : 'Winged'
+    })
+</code></pre>
+
+<h1 id="installation">INSTALLATION</h1>
+
+<p>With <code>npm</code>:</p>
+
+<pre><code>npm install task-joose-nodejs
+</code></pre>
+
+<h1 id="description">DESCRIPTION</h1>
+
+<p><code>Task.Joose.NodeJS</code> is a distribution, which just loads a Joose core along with with several essential extensions. Its purposed to be used on NodeJS platform. </p>
+
+<p>It includes:</p>
+
+<blockquote>
+  <p><a href="http://openjsan.org/go/?l=Joose.Manual">Joose</a></p>
+  
+  <blockquote>
+    <p>Joose core, provides definitions for <code>Class/Role/Module</code> helpers</p>
+  </blockquote>
+  
+  <p><a href="http://openjsan.org/go/?l=JooseX.Attribute">JooseX.Attribute</a> </p>
+  
+  <blockquote>
+    <p>Additional features for attributes</p>
+  </blockquote>
+  
+  <p><a href="http://openjsan.org/go/?l=JooseX.Namespace.Depended">JooseX.Namespace.Depended</a></p>
+  
+  <blockquote>
+    <p>Dependencies handling extension</p>
+  </blockquote>
+  
+  <p><a href="http://openjsan.org/go/?l=JooseX.CPS">JooseX.CPS</a></p>
+  
+  <blockquote>
+    <p>Trait, allowing to add the asynchronous (aka non-blocking) methods to your classes</p>
+  </blockquote>
+</blockquote>
+
+<h1 id="approachtomodules">Approach to modules </h1>
+
+<p>Joose was initially created to run in browser environment. Browser platform is less tolerant to synchronous resource loading than SSJS, as in older browsers it blocks the UI.
+Thus, Joose wasn't able to adapt the CommonJS modules system (which is synchronous) and behave differently. However, when using Joose on server-side, you can freely mix the
+Joose and CommonJS modules. </p>
+
+<p>Below is the quick introduction to Joose modules. Please refer to <a href="http://openjsan.org/go/?l=Joose.Manual">Joose manual</a> for details. </p>
+
+<h2 id="basicjoosemodule">Basic Joose module</h2>
+
+<p>The module in Joose is just a special kind of class, which is declared with <code>Module</code> helper. The 1st argument to helper is the name of the module and the 2nd - a module's "body".
+"Body" is  a function, which will be called with the module namespace as the single argument and in the same scope:  </p>
+
+<pre><code>    Module('Some.Module', function (m) {
+
+        // this == m
+        // this == Some.Module
+
+        this.exportedFunction1 = function () { ... }
+        this.exportedFunction2 = function () { ... }
+    })
+
+    Some.Module.exportedFunction1()
+    Some.Module.exportedFunction2()
+</code></pre>
+
+<p>The module doesn't export anything. Instead, the module namespace (<code>Some.Module</code>) is exported to the calling scope. If you need to export some function - define it
+as the property of the module's namespace (when declaring Classes you may prefer to use <a href="http://openjsan.org/go/?l=Joose.Manual.Static">static methods</a>) </p>
+
+<h2 id="joosemodulewithdependencies">Joose module with dependencies</h2>
+
+<p>If the module depends on other modules, the dependencies should be listed with <code>use</code> builder:</p>
+
+<pre><code>    Module('Some.Another.Module', {
+
+        VERSION : 0.01,
+
+        use : {
+            'Some.Module'           : 0.01,
+            'Yet.Another.Module'    : 0.02 
+        },
+
+    body : function (m) {
+
+        // this == m
+        // this == Some.Another.Module
+
+        // setup aliases for methods being "imported"
+        var exportedFunction1  = Some.Module.exportedFunction1
+        var exportedFunction2  = Some.Module.exportedFunction2
+    }})
+</code></pre>
+
+<p>Before running the "body" all dependencies will be asynchronously pre-loaded (only once). This code will work unmodified in both browser and server-side environments.</p>
+
+<p>This functionality is provided by the <a href="http://openjsan.org/go/?l=JooseX.Namespace.Depended">JooseX.Namespace.Depended</a> extension, please refer to its documentation for details 
+(like how the files should be laid out in filesystem).</p>
+
+<h1 id="usage">USAGE</h1>
+
+<pre><code>    require('task-joose-nodejs')
+</code></pre>
+
+<p>This will export <code>Class/Role/Module</code> as standard CommonJS module. Also, it will <em>create the same helpers in the global scope</em>. </p>
+
+<h2 id="scenario1.usingjooseincommonjsmodules">Scenario 1. Using Joose in CommonJS modules</h2>
+
+<p>In this scenario you'll probably want to create anonymous classes (just omit the name):</p>
+
+<pre><code>    var Class       = require('task-joose-nodejs').Class
+
+    var someFunc    = require('some/module').someFunc
+
+
+    exports.Circle = Class({
+        has : {
+            radius : {
+                is      : 'rw',
+                init    : 10
+            }
+        },
+
+        methods : {
+            getSquare : function () {
+                ...
+            }
+        }
+    })
+</code></pre>
+
+<p>This scenario is available only server-side.</p>
+
+<h2 id="scenario2.usingcommonjsmodulesinjoose-basic">Scenario 2. Using CommonJS modules in Joose - basic</h2>
+
+<p>In this scenario we first declare the module (to get the "body" function with own scope) , and then "promote" it to class. Note, how we use the leading dot in the name of class.
+Without it, the created class would've been put in the module's namespace, like: <code>Graphic.Circle.Graphic.Circle</code></p>
+
+<p>This scenario is available only server-side.</p>
+
+<pre><code>    Module('Graphic.Circle', function (module) {
+
+        var puts        = require('sys').puts
+        var someFunc    = require('some/module').someFunc
+
+
+        // promotes module to class, leading dot means place it in global namespace
+        Class('.Graphic.Circle', {
+
+            has : {
+                radius : {
+                    is      : 'rw',
+                    init    : 10
+                }
+            },
+
+            methods : {
+                draw : function () {
+                    puts("using imported function")
+
+                    someFunc(this)
+                }
+            }
+        })
+    })
+</code></pre>
+
+<h2 id="scenario3.usingcommonjsmodulesinjoose-withdependencies">Scenario 3. Using CommonJS modules in Joose - with dependencies</h2>
+
+<p>In this scenario we declare additional dependencies for out Joose class. We can specify the dependencies either with <code>use</code> - they'll be loaded via Joose
+modules system or with <code>require</code> - they'll be handled by standard <code>require</code>.</p>
+
+<p>This scenario is available only server-side.</p>
+
+<pre><code>    Module('Graphic.Circle', {
+
+        require : [ './some/commonjs/module1.js', './some/commonjs/module2.js' ],
+
+        use : {
+            'Some.Joose.Role'       : 0.01,
+            'Some.Another.Class'    : 0.02
+        },
+
+    body : function (module) {
+
+        // will be already loaded, so the call will be synchronous 
+        var someFunc = require('./some/commonjs/module1.js').someFunc
+
+
+        Class('.Graphic.Circle', {
+            does : Some.Joose.Role,
+
+            has : {
+                radius : {
+                    is      : 'rw',
+                    init    : 10
+                }
+            },
+
+            methods : {
+                draw : function () {
+                    someFunc("using imported function")
+                }
+            }
+        })
+    }})
+</code></pre>
+
+<h2 id="scenario4.usingjooseclassesdependingonjooseclassesonly">Scenario 4. Using Joose classes, depending on Joose classes only</h2>
+
+<p>When using Joose classes, depending on Joose classes only, we can declare the Class from start, without wrapping Module.</p>
+
+<p>This scenario is available both in browser and server-side enviroments.</p>
+
+<pre><code>    Class('Graphic.Circle', {
+
+        VERSION : 0.01,
+
+        does : {
+            'Some.Joose.Role' : 0.01,
+        },
+
+        use : {
+            'Some.Another.Class' : 0.02
+        },
+
+
+        has : {
+            radius : {
+                is      : 'rw',
+                init    : 10
+            }
+        },
+
+        methods : {
+            draw : function () {
+                Some.Another.Class.someFunc("using imported function as class method")
+            }
+        },
+
+
+        // static part of the class
+        my : {
+            methods : {
+                exportedFunction1 : function () { ... },
+                exportedFunction2 : function () { ... }
+            }
+        }
+    })
+</code></pre>
+
+<h1 id="gettinghelp">GETTING HELP</h1>
+
+<p>This extension is supported via github issues tracker: <a href="http://github.com/SamuraiJack/Task-Joose-NodeJS/issues">http://github.com/SamuraiJack/Task-Joose-NodeJS/issues</a>
+For general Joose questions you can also visit #joose on irc.freenode.org or the forum at: <a href="http://joose.it/forum">http://joose.it/forum</a></p>
+
+<h1 id="seealso">SEE ALSO</h1>
+
+<p>Web page of this module: <a href="http://github.com/SamuraiJack/Task-Joose-NodeJS/">http://github.com/SamuraiJack/Task-Joose-NodeJS/</a></p>
+
+<p>General documentation for Joose: <a href="http://openjsan.org/go/?l=Joose">http://openjsan.org/go/?l=Joose</a></p>
+
+<h1 id="bugs">BUGS</h1>
+
+<p>All complex software has bugs lurking in it, and this module is no exception.</p>
+
+<p>Please report any bugs through the web interface at <a href="http://github.com/SamuraiJack/Task-Joose-NodeJS/issues">http://github.com/SamuraiJack/Task-Joose-NodeJS/issues</a></p>
+
+<h1 id="authors">AUTHORS</h1>
+
+<p>Nickolay Platonov <a href="&#x6D;&#97;&#105;&#x6C;t&#111;:&#110;&#x70;&#108;&#97;&#116;&#111;&#x6E;&#x6F;&#x76;&#64;&#x63;&#112;&#97;&#110;&#x2E;&#x6F;&#114;&#103;">&#110;&#x70;&#108;&#97;&#116;&#111;&#x6E;&#x6F;&#x76;&#64;&#x63;&#112;&#97;&#110;&#x2E;&#x6F;&#114;&#103;</a></p>
+
+<h1 id="copyrightandlicense">COPYRIGHT AND LICENSE</h1>
+
+<p>Copyright (c) 2009, Nickolay Platonov</p>
+
+<p>All rights reserved.</p>
+
+<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
+<ul>
+<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+<li>Neither the name of Nickolay Platonov nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission. </li>
+</ul>
+
+<p>THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. </p>
+</body>
+</html>
