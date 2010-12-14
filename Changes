@@ -2,6 +2,9 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+    - bumped deps
+    - docs update
+
 0.08      2010-11-01 13:45
 
     - re-release solely for `npm` platform
