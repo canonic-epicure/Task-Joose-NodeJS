@@ -57,7 +57,7 @@
 
 <p>With <code>npm</code>:</p>
 
-<pre><code>npm install task-joose-nodejs
+<pre><code>&gt; [sudo] npm install task-joose-nodejs
 </code></pre>
 
 <h1 id="description">DESCRIPTION</h1>
@@ -67,25 +67,25 @@
 <p>It includes:</p>
 
 <blockquote>
-  <p><a href="http://openjsan.org/go/?l=Joose.Manual">Joose</a></p>
+  <p><a href="http://joose.github.com/Joose/doc/html/Joose/Manual.html">Joose</a></p>
   
   <blockquote>
     <p>Joose core, provides definitions for <code>Class/Role/Module</code> helpers</p>
   </blockquote>
   
-  <p><a href="http://openjsan.org/go/?l=JooseX.Attribute">JooseX.Attribute</a> </p>
+  <p><a href="http://samuraijack.github.com/JooseX-Attribute">JooseX.Attribute</a> </p>
   
   <blockquote>
     <p>Additional features for attributes</p>
   </blockquote>
   
-  <p><a href="http://openjsan.org/go/?l=JooseX.Namespace.Depended">JooseX.Namespace.Depended</a></p>
+  <p><a href="http://samuraijack.github.com/JooseX-Namespace-Depended">JooseX.Namespace.Depended</a></p>
   
   <blockquote>
     <p>Dependencies handling extension</p>
   </blockquote>
   
-  <p><a href="http://openjsan.org/go/?l=JooseX.CPS">JooseX.CPS</a></p>
+  <p><a href="http://samuraijack.github.com/JooseX-CPS/">JooseX.CPS</a></p>
   
   <blockquote>
     <p>Trait, allowing to add the asynchronous (aka non-blocking) methods to your classes</p>
@@ -98,7 +98,7 @@
 Thus, Joose wasn't able to adapt the CommonJS modules system (which is synchronous) and behave differently. However, when using Joose on server-side, you can freely mix the
 Joose and CommonJS modules. </p>
 
-<p>Below is the quick introduction to Joose modules. Please refer to <a href="http://openjsan.org/go/?l=Joose.Manual">Joose manual</a> for details. </p>
+<p>Below is the quick introduction to Joose modules. Please refer to <a href="http://joose.github.com/Joose/doc/html/Joose/Manual.html">Joose manual</a> for details. </p>
 
 <h2 id="basicjoosemodule">Basic Joose module</h2>
 
@@ -119,7 +119,7 @@ Joose and CommonJS modules. </p>
 </code></pre>
 
 <p>The module doesn't export anything. Instead, the module namespace (<code>Some.Module</code>) is exported to the calling scope. If you need to export some function - define it
-as the property of the module's namespace (when declaring Classes you may prefer to use <a href="http://openjsan.org/go/?l=Joose.Manual.Static">static methods</a>) </p>
+as the property of the module's namespace (when declaring Classes you may prefer to use <a href="http://joose.github.com/Joose/doc/html/Joose/Manual/Static.html">static methods</a>) </p>
 
 <h2 id="joosemodulewithdependencies">Joose module with dependencies</h2>
 
@@ -147,7 +147,7 @@ as the property of the module's namespace (when declaring Classes you may prefer
 
 <p>Before running the "body" all dependencies will be asynchronously pre-loaded (only once). This code will work unmodified in both browser and server-side environments.</p>
 
-<p>This functionality is provided by the <a href="http://openjsan.org/go/?l=JooseX.Namespace.Depended">JooseX.Namespace.Depended</a> extension, please refer to its documentation for details 
+<p>This functionality is provided by the <a href="http://samuraijack.github.com/JooseX-Namespace-Depended">JooseX.Namespace.Depended</a> extension, please refer to its documentation for details 
 (like how the files should be laid out in filesystem).</p>
 
 <h1 id="usage">USAGE</h1>
@@ -304,14 +304,17 @@ modules system or with <code>require</code> - they'll be handled by standard <co
 
 <h1 id="gettinghelp">GETTING HELP</h1>
 
-<p>This extension is supported via github issues tracker: <a href="http://github.com/SamuraiJack/Task-Joose-NodeJS/issues">http://github.com/SamuraiJack/Task-Joose-NodeJS/issues</a>
-For general Joose questions you can also visit #joose on irc.freenode.org or the forum at: <a href="http://joose.it/forum">http://joose.it/forum</a></p>
+<p>This extension is supported via github issues tracker: <a href="http://github.com/SamuraiJack/Task-Joose-NodeJS/issues">http://github.com/SamuraiJack/Task-Joose-NodeJS/issues</a></p>
+
+<p>You can also ask questions at IRC channel : <a href="http://webchat.freenode.net/?randomnick=1&amp;channels=joose&amp;prompt=1">#joose</a></p>
+
+<p>Or the mailing list: <a href="http://groups.google.com/group/joose-js">http://groups.google.com/group/joose-js</a></p>
 
 <h1 id="seealso">SEE ALSO</h1>
 
 <p>Web page of this module: <a href="http://github.com/SamuraiJack/Task-Joose-NodeJS/">http://github.com/SamuraiJack/Task-Joose-NodeJS/</a></p>
 
-<p>General documentation for Joose: <a href="http://openjsan.org/go/?l=Joose">http://openjsan.org/go/?l=Joose</a></p>
+<p>General documentation for Joose: <a href="http://joose.github.com/Joose/">http://joose.github.com/Joose/</a></p>
 
 <h1 id="bugs">BUGS</h1>
 
@@ -321,7 +324,7 @@ For general Joose questions you can also visit #joose on irc.freenode.org or the
 
 <h1 id="authors">AUTHORS</h1>
 
-<p>Nickolay Platonov <a href="&#x6D;&#97;&#105;&#x6C;t&#111;:&#110;&#x70;&#108;&#97;&#116;&#111;&#x6E;&#x6F;&#x76;&#64;&#x63;&#112;&#97;&#110;&#x2E;&#x6F;&#114;&#103;">&#110;&#x70;&#108;&#97;&#116;&#111;&#x6E;&#x6F;&#x76;&#64;&#x63;&#112;&#97;&#110;&#x2E;&#x6F;&#114;&#103;</a></p>
+<p>Nickolay Platonov <a href="&#109;&#97;&#105;&#x6C;&#116;&#x6F;:&#x6E;&#112;&#x6C;&#97;t&#x6F;&#x6E;&#111;&#x76;&#64;&#99;&#x70;&#97;n&#46;&#x6F;&#x72;&#x67;">&#x6E;&#112;&#x6C;&#97;t&#x6F;&#x6E;&#111;&#x76;&#64;&#99;&#x70;&#97;n&#46;&#x6F;&#x72;&#x67;</a></p>
 
 <h1 id="copyrightandlicense">COPYRIGHT AND LICENSE</h1>
 
