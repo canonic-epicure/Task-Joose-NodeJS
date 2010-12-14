@@ -55,7 +55,7 @@ INSTALLATION
 
 With `npm`:
 
-    npm install task-joose-nodejs
+    > [sudo] npm install task-joose-nodejs
 
 
 DESCRIPTION
@@ -65,19 +65,19 @@ DESCRIPTION
 
 It includes:
 
-> [Joose](http://openjsan.org/go/?l=Joose.Manual)
+> [Joose](http://joose.github.com/Joose/doc/html/Joose/Manual.html)
 
 >> Joose core, provides definitions for `Class/Role/Module` helpers
 
-> [JooseX.Attribute](http://openjsan.org/go/?l=JooseX.Attribute) 
+> [JooseX.Attribute](http://samuraijack.github.com/JooseX-Attribute) 
 
 >> Additional features for attributes
 
-> [JooseX.Namespace.Depended](http://openjsan.org/go/?l=JooseX.Namespace.Depended)
+> [JooseX.Namespace.Depended](http://samuraijack.github.com/JooseX-Namespace-Depended)
 
 >> Dependencies handling extension
 
-> [JooseX.CPS](http://openjsan.org/go/?l=JooseX.CPS)
+> [JooseX.CPS](http://samuraijack.github.com/JooseX-CPS/)
 
 >> Trait, allowing to add the asynchronous (aka non-blocking) methods to your classes
 
@@ -89,7 +89,7 @@ Joose was initially created to run in browser environment. Browser platform is l
 Thus, Joose wasn't able to adapt the CommonJS modules system (which is synchronous) and behave differently. However, when using Joose on server-side, you can freely mix the
 Joose and CommonJS modules. 
 
-Below is the quick introduction to Joose modules. Please refer to [Joose manual](http://openjsan.org/go/?l=Joose.Manual) for details. 
+Below is the quick introduction to Joose modules. Please refer to [Joose manual](http://joose.github.com/Joose/doc/html/Joose/Manual.html) for details. 
 
 
 Basic Joose module
@@ -111,7 +111,7 @@ The module in Joose is just a special kind of class, which is declared with `Mod
         Some.Module.exportedFunction2()
 
 The module doesn't export anything. Instead, the module namespace (`Some.Module`) is exported to the calling scope. If you need to export some function - define it
-as the property of the module's namespace (when declaring Classes you may prefer to use [static methods](http://openjsan.org/go/?l=Joose.Manual.Static)) 
+as the property of the module's namespace (when declaring Classes you may prefer to use [static methods](http://joose.github.com/Joose/doc/html/Joose/Manual/Static.html)) 
 
 
 Joose module with dependencies
@@ -140,7 +140,7 @@ If the module depends on other modules, the dependencies should be listed with `
     
 Before running the "body" all dependencies will be asynchronously pre-loaded (only once). This code will work unmodified in both browser and server-side environments.
 
-This functionality is provided by the [JooseX.Namespace.Depended](http://openjsan.org/go/?l=JooseX.Namespace.Depended) extension, please refer to its documentation for details 
+This functionality is provided by the [JooseX.Namespace.Depended](http://samuraijack.github.com/JooseX-Namespace-Depended) extension, please refer to its documentation for details 
 (like how the files should be laid out in filesystem).
 
 
@@ -311,8 +311,11 @@ GETTING HELP
 ============
 
 This extension is supported via github issues tracker: <http://github.com/SamuraiJack/Task-Joose-NodeJS/issues>
-For general Joose questions you can also visit #joose on irc.freenode.org or the forum at: <http://joose.it/forum>
+
+You can also ask questions at IRC channel : [#joose](http://webchat.freenode.net/?randomnick=1&channels=joose&prompt=1)
  
+Or the mailing list: <http://groups.google.com/group/joose-js>
+
 
 
 SEE ALSO
@@ -320,7 +323,7 @@ SEE ALSO
 
 Web page of this module: <http://github.com/SamuraiJack/Task-Joose-NodeJS/>
 
-General documentation for Joose: <http://openjsan.org/go/?l=Joose>
+General documentation for Joose: <http://joose.github.com/Joose/>
 
 
 BUGS
