@@ -2,6 +2,8 @@ Revision history for Task.Joose.NodeJS
 
 {{ $NEXT }}
 
+    - export Class/Role/Module symbols from 'Task/Joose/NodeJS' as well
+
 0.09      2010-12-14 21:21
 
     - bumped deps
