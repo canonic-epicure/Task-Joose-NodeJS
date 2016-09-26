@@ -191,7 +191,7 @@ This scenario is available only server-side.
 
         Module('Graphic.Circle', function (module) {
             
-            var puts        = require('sys').puts
+            var puts        = require('util').puts
             var someFunc    = require('some/module').someFunc
         
         
